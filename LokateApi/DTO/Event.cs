@@ -13,7 +13,7 @@ namespace LokateApi.DTO
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public float Price { get; set; }
-        public IEnumerable<User> Attendees { get; set; }
+        public IEnumerable<User> Users { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
         public Venue Venue { get; set; }
         public string ImageUrl { get; set; }

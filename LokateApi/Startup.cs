@@ -48,8 +48,8 @@ namespace LokateApi
                 }).SingleInstance();
             builder.RegisterType<GraphRepository>().As<IGraphRepository>();
             builder.RegisterType<EventsRepository>().As<IEventsRepository>();
-            //builder.RegisterType<GenresRepository>().As<IGenresRepository>();
-            //builder.RegisterType<UsersRepository>().As<IUsersRepository>();
+            builder.RegisterType<GenresRepository>().As<IGenresRepository>();
+            builder.RegisterType<UsersRepository>().As<IUsersRepository>();
             builder.RegisterType<VenuesRepository>().As<IVenuesRepository>();
 
             builder.Populate(services);
