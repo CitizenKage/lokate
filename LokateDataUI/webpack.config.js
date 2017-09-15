@@ -16,5 +16,12 @@ module.exports = {
                 }
             }
         ]
+    },
+    externals: {
+        'Config': JSON.stringify(process.env.ENV === 'production' ? {
+            serverUrl: "http://myserver.com"
+        } : {
+                serverUrl: "http://localhost:55616"
+            })
     }
 };

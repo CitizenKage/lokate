@@ -70,6 +70,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var Config = __webpack_require__(444);
+
 	var NameForm = function (_Component) {
 	    _inherits(NameForm, _Component);
 
@@ -91,15 +93,9 @@
 	        _this.handleClubLatitudeChange = _this.handleClubLatitudeChange.bind(_this);
 	        _this.handleClubLongitudeChange = _this.handleClubLongitudeChange.bind(_this);
 	        _this.handleImageUrlChange = _this.handleImageUrlChange.bind(_this);
-	        //this.handleSubmit = this.handleSubmit.bind(this);
+	        _this.addClub = _this.addClub.bind(_this);
 	        return _this;
 	    }
-
-	    //getInitialState() {
-	    //    return {
-	    //        value: ''
-	    //    };
-	    //}
 
 	    _createClass(NameForm, [{
 	        key: 'getClubNameValidationState',
@@ -144,6 +140,27 @@
 	        key: 'handleImageUrlChange',
 	        value: function handleImageUrlChange(e) {
 	            this.setState({ imageUrl: e.target.value });
+	        }
+	    }, {
+	        key: 'addClub',
+	        value: function addClub() {
+	            if (this.getClubNameValidationState() === 'success' && this.getLatitudeValidationState() === 'success' && this.getLongitudeValidationState() === 'success' && this.getImageUrlValidationState() === 'success') {
+
+	                fetch(Config.serverUrl + '/api/venues', {
+	                    method: 'POST',
+	                    headers: {
+	                        'Accept': 'application/json',
+	                        'Content-Type': 'application/json',
+	                        'Access-Control-Allow-Origin': '*'
+	                    },
+	                    body: JSON.stringify({
+	                        name: this.state.clubName,
+	                        latitude: this.state.clubLatitude,
+	                        longitude: this.state.clubLongitude,
+	                        imageUrl: this.state.imageUrl
+	                    })
+	                });
+	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -234,6 +251,11 @@
 	                        null,
 	                        'Validation is based on string length.'
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Button,
+	                    { bsStyle: 'primary', onClick: this.addClub },
+	                    'Insert club'
 	                )
 	            );
 	        }
@@ -42598,6 +42620,12 @@
 	exports.bootstrapUtils = _bootstrapUtils;
 	exports.createChainedFunction = _createChainedFunction3['default'];
 	exports.ValidComponentChildren = _ValidComponentChildren3['default'];
+
+/***/ },
+/* 444 */
+/***/ function(module, exports) {
+
+	module.exports = {"serverUrl":"http://localhost:55616"};
 
 /***/ }
 /******/ ]);

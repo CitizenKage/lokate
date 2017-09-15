@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import {FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, Button} from 'react-bootstrap';
+import { FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, Button } from 'react-bootstrap';
+var Config = require('Config');
 
 export default class NameForm extends Component {
 
@@ -14,7 +15,7 @@ export default class NameForm extends Component {
         this.handleClubLatitudeChange = this.handleClubLatitudeChange.bind(this);
         this.handleClubLongitudeChange = this.handleClubLongitudeChange.bind(this);
         this.handleImageUrlChange = this.handleImageUrlChange.bind(this);
-        //this.handleSubmit = this.handleSubmit.bind(this);
+        this.addClub = this.addClub.bind(this);
     }
 
     getClubNameValidationState() {
@@ -59,6 +60,29 @@ export default class NameForm extends Component {
 
     handleImageUrlChange(e) {
         this.setState({ imageUrl: e.target.value });
+    }
+
+    addClub() {
+        if (this.getClubNameValidationState() === 'success' &&
+            this.getLatitudeValidationState() === 'success' &&
+            this.getLongitudeValidationState() === 'success' &&
+            this.getImageUrlValidationState() === 'success') {
+
+            fetch(Config.serverUrl + '/api/venues', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify({
+                    name: this.state.clubName,
+                    latitude: this.state.clubLatitude,
+                    longitude: this.state.clubLongitude,
+                    imageUrl: this.state.imageUrl
+                })
+            })
+        }
     }
 
     render() {
@@ -108,6 +132,7 @@ export default class NameForm extends Component {
                     <FormControl.Feedback />
                     <HelpBlock>Validation is based on string length.</HelpBlock>
                 </FormGroup>
+                <Button bsStyle="primary" onClick={this.addClub}>Insert club</Button>
             </form>);
     }
 }
