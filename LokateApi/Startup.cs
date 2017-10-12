@@ -48,7 +48,7 @@ namespace LokateApi
                 }).SingleInstance();
             builder.RegisterType<GraphRepository>().As<IGraphRepository>();
             builder.RegisterType<EventsRepository>().As<IEventsRepository>();
-            builder.RegisterType<GenresRepository>().As<IGenresRepository>();
+            builder.RegisterType<CategoriesRepository>().As<ICategoriesRepository>();
             builder.RegisterType<UsersRepository>().As<IUsersRepository>();
             builder.RegisterType<VenuesRepository>().As<IVenuesRepository>();
 
@@ -64,6 +64,12 @@ namespace LokateApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseCors(
+                options => options.AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader()
+            );
 
             app.UseMvc();
 

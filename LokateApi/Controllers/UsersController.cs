@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using LokateApi.DAL;
 using LokateApi.DTO;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,10 @@ namespace LokateApi.Controllers
         [HttpPost]
         public void Post([FromBody]User value)
         {
+            if (value.Guid == Guid.Empty)
+            {
+                value.Guid = Guid.NewGuid();
+            }
             _repository.InsertUser(value);
         }
 

@@ -35,6 +35,7 @@ namespace LokateApi.DAL
 
         public void InsertVenue(Venue venue)
         {
+            venue.Guid = Guid.NewGuid();
             GraphClient.Cypher
                 .Create("(n:Venue {venue})")
                 .WithParams(new { venue })

@@ -21,7 +21,7 @@ namespace LokateApi.DAL
         {
             var query = GraphClient.Cypher
                 .Match("(ev:Event)-[:HELD_AT]->(venue:Venue)")
-                .OptionalMatch("(ev)-[:IS_OF_GENRE *1..4]->(tag:Tag)")
+                .OptionalMatch("(ev)-[:IS_OF_CATEGORY *1..4]->(tag:Tag)")
                 .Return((ev, venue, tag) => new
                 {
                     Event = ev.As<Event>(),
