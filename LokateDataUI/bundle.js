@@ -22340,7 +22340,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'form',
-	                { 'class': 'form-group' },
+	                { className: 'form-group' },
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
 	                    { controlId: 'eventNameInput', validationState: this.getEventNameValidationState() },
@@ -42729,7 +42729,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'form',
-	                { 'class': 'form-group' },
+	                { className: 'form-group' },
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
 	                    { controlId: 'clubNameInput', validationState: this.getClubNameValidationState() },
@@ -42861,45 +42861,45 @@
 
 	var Config = __webpack_require__(445);
 
-	var GenreInsertForm = function (_Component) {
-	    _inherits(GenreInsertForm, _Component);
+	var CategoryInsertForm = function (_Component) {
+	    _inherits(CategoryInsertForm, _Component);
 
-	    _createClass(GenreInsertForm, [{
+	    _createClass(CategoryInsertForm, [{
 	        key: 'displayName',
 	        get: function get() {
-	            return 'Genre Form';
+	            return 'Category Form';
 	        }
 	    }]);
 
-	    function GenreInsertForm(props) {
-	        _classCallCheck(this, GenreInsertForm);
+	    function CategoryInsertForm(props) {
+	        _classCallCheck(this, CategoryInsertForm);
 
-	        var _this = _possibleConstructorReturn(this, (GenreInsertForm.__proto__ || Object.getPrototypeOf(GenreInsertForm)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (CategoryInsertForm.__proto__ || Object.getPrototypeOf(CategoryInsertForm)).call(this, props));
 
-	        _this.state = { genreName: '' };
+	        _this.state = { CategoryName: '' };
 
-	        _this.handleGenreNameChange = _this.handleGenreNameChange.bind(_this);
-	        _this.addGenre = _this.addGenre.bind(_this);
+	        _this.handleCategoryNameChange = _this.handleCategoryNameChange.bind(_this);
+	        _this.addCategory = _this.addCategory.bind(_this);
 	        return _this;
 	    }
 
-	    _createClass(GenreInsertForm, [{
-	        key: 'getGenreNameValidationState',
-	        value: function getGenreNameValidationState() {
-	            var length = this.state.genreName.length;
+	    _createClass(CategoryInsertForm, [{
+	        key: 'getCategoryNameValidationState',
+	        value: function getCategoryNameValidationState() {
+	            var length = this.state.CategoryName.length;
 	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
 	        }
 	    }, {
-	        key: 'handleGenreNameChange',
-	        value: function handleGenreNameChange(e) {
-	            this.setState({ genreName: e.target.value });
+	        key: 'handleCategoryNameChange',
+	        value: function handleCategoryNameChange(e) {
+	            this.setState({ CategoryName: e.target.value });
 	        }
 	    }, {
 	        key: 'addCategory',
 	        value: function addCategory() {
-	            if (this.getGenreNameValidationState() === 'success') {
+	            if (this.getCategoryNameValidationState() === 'success') {
 
-	                fetch(Config.serverUrl + '/api/genres', {
+	                fetch(Config.serverUrl + '/api/Categorys', {
 	                    method: 'POST',
 	                    headers: {
 	                        'Accept': 'application/json',
@@ -42907,7 +42907,7 @@
 	                        'Access-Control-Allow-Origin': '*'
 	                    },
 	                    body: JSON.stringify({
-	                        name: this.state.genreName
+	                        name: this.state.CategoryName
 	                    })
 	                });
 	            }
@@ -42917,20 +42917,20 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'form',
-	                { 'class': 'form-group' },
+	                { className: 'form-group' },
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
-	                    { controlId: 'genreNameInput', validationState: this.getGenreNameValidationState() },
+	                    { controlId: 'CategoryNameInput', validationState: this.getCategoryNameValidationState() },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.ControlLabel,
 	                        null,
-	                        'Insert Genre'
+	                        'Insert Category'
 	                    ),
 	                    _react2.default.createElement(_reactBootstrap.FormControl, {
 	                        type: 'text',
-	                        value: this.state.genreName,
-	                        placeholder: 'Enter genre name',
-	                        onChange: this.handleGenreNameChange
+	                        value: this.state.CategoryName,
+	                        placeholder: 'Enter Category name',
+	                        onChange: this.handleCategoryNameChange
 	                    }),
 	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                    _react2.default.createElement(
@@ -42941,17 +42941,17 @@
 	                ),
 	                _react2.default.createElement(
 	                    _reactBootstrap.Button,
-	                    { bsStyle: 'primary', onClick: this.addGenre },
-	                    'Insert genre'
+	                    { bsStyle: 'primary', onClick: this.addCategory },
+	                    'Insert Category'
 	                )
 	            );
 	        }
 	    }]);
 
-	    return GenreInsertForm;
+	    return CategoryInsertForm;
 	}(_react.Component);
 
-	exports.default = GenreInsertForm;
+	exports.default = CategoryInsertForm;
 	;
 
 /***/ },
