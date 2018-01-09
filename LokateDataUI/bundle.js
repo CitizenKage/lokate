@@ -60,21 +60,23 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _eventInsertForm = __webpack_require__(184);
-
-	var _eventInsertForm2 = _interopRequireDefault(_eventInsertForm);
-
-	var _venueInsertForm = __webpack_require__(446);
+	var _venueInsertForm = __webpack_require__(184);
 
 	var _venueInsertForm2 = _interopRequireDefault(_venueInsertForm);
 
-	var _categoryInsertForm = __webpack_require__(447);
+	var _categoryInsertForm = __webpack_require__(446);
 
 	var _categoryInsertForm2 = _interopRequireDefault(_categoryInsertForm);
+
+	var _eventInsertForm = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/event-insert-form\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _eventInsertForm2 = _interopRequireDefault(_eventInsertForm);
 
 	var _attendeeInsertForm = __webpack_require__(448);
 
 	var _attendeeInsertForm2 = _interopRequireDefault(_attendeeInsertForm);
+
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-select/dist/react-select.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -99,13 +101,13 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_eventInsertForm2.default, null),
+	                _react2.default.createElement('eventInsertForm', null),
 	                _react2.default.createElement('hr', null),
-	                _react2.default.createElement(_venueInsertForm2.default, null),
+	                _react2.default.createElement('venueInsertForm', null),
 	                _react2.default.createElement('hr', null),
-	                _react2.default.createElement(_categoryInsertForm2.default, null),
+	                _react2.default.createElement('categoryInsertForm', null),
 	                _react2.default.createElement('hr', null),
-	                _react2.default.createElement(_attendeeInsertForm2.default, null),
+	                _react2.default.createElement('attendeeInsertForm', null),
 	                _react2.default.createElement('hr', null)
 	            );
 	        }
@@ -22284,45 +22286,81 @@
 
 	var Config = __webpack_require__(445);
 
-	var EventInsertForm = function (_Component) {
-	    _inherits(EventInsertForm, _Component);
+	var VenueInsertForm = function (_Component) {
+	    _inherits(VenueInsertForm, _Component);
 
-	    _createClass(EventInsertForm, [{
+	    _createClass(VenueInsertForm, [{
 	        key: 'displayName',
 	        get: function get() {
-	            return 'Event Form';
+	            return 'Venue Form';
 	        }
 	    }]);
 
-	    function EventInsertForm(props) {
-	        _classCallCheck(this, EventInsertForm);
+	    function VenueInsertForm(props) {
+	        _classCallCheck(this, VenueInsertForm);
 
-	        var _this = _possibleConstructorReturn(this, (EventInsertForm.__proto__ || Object.getPrototypeOf(EventInsertForm)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (VenueInsertForm.__proto__ || Object.getPrototypeOf(VenueInsertForm)).call(this, props));
 
-	        _this.state = { eventName: '', venue: '' };
+	        _this.state = { clubName: '', clubLatitude: '', clubLongitude: '', imageUrl: '' };
 
-	        _this.handleEventNameChange = _this.handleEventNameChange.bind(_this);
-	        _this.addEvent = _this.addEvent.bind(_this);
+	        _this.handleClubNameChange = _this.handleClubNameChange.bind(_this);
+	        _this.handleClubLatitudeChange = _this.handleClubLatitudeChange.bind(_this);
+	        _this.handleClubLongitudeChange = _this.handleClubLongitudeChange.bind(_this);
+	        _this.handleImageUrlChange = _this.handleImageUrlChange.bind(_this);
+	        _this.addClub = _this.addClub.bind(_this);
 	        return _this;
 	    }
 
-	    _createClass(EventInsertForm, [{
-	        key: 'getEventNameValidationState',
-	        value: function getEventNameValidationState() {
-	            var length = this.state.eventName.length;
+	    _createClass(VenueInsertForm, [{
+	        key: 'getClubNameValidationState',
+	        value: function getClubNameValidationState() {
+	            var length = this.state.clubName.length;
 	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
 	        }
 	    }, {
-	        key: 'handleEventNameChange',
-	        value: function handleEventNameChange(e) {
-	            this.setState({ eventName: e.target.value });
+	        key: 'getLatitudeValidationState',
+	        value: function getLatitudeValidationState() {
+	            var length = this.state.clubLatitude.length;
+	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
 	        }
 	    }, {
-	        key: 'addEvent',
-	        value: function addEvent() {
-	            if (this.getEventNameValidationState() === 'success') {
+	        key: 'getLongitudeValidationState',
+	        value: function getLongitudeValidationState() {
+	            var length = this.state.clubLongitude.length;
+	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
+	        }
+	    }, {
+	        key: 'getImageUrlValidationState',
+	        value: function getImageUrlValidationState() {
+	            var length = this.state.imageUrl.length;
+	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
+	        }
+	    }, {
+	        key: 'handleClubNameChange',
+	        value: function handleClubNameChange(e) {
+	            this.setState({ clubName: e.target.value });
+	        }
+	    }, {
+	        key: 'handleClubLatitudeChange',
+	        value: function handleClubLatitudeChange(e) {
+	            this.setState({ clubLatitude: e.target.value });
+	        }
+	    }, {
+	        key: 'handleClubLongitudeChange',
+	        value: function handleClubLongitudeChange(e) {
+	            this.setState({ clubLongitude: e.target.value });
+	        }
+	    }, {
+	        key: 'handleImageUrlChange',
+	        value: function handleImageUrlChange(e) {
+	            this.setState({ imageUrl: e.target.value });
+	        }
+	    }, {
+	        key: 'addClub',
+	        value: function addClub() {
+	            if (this.getClubNameValidationState() === 'success' && this.getLatitudeValidationState() === 'success' && this.getLongitudeValidationState() === 'success' && this.getImageUrlValidationState() === 'success') {
 
-	                fetch(Config.serverUrl + '/api/events', {
+	                fetch(Config.serverUrl + '/api/venues', {
 	                    method: 'POST',
 	                    headers: {
 	                        'Accept': 'application/json',
@@ -22330,7 +22368,10 @@
 	                        'Access-Control-Allow-Origin': '*'
 	                    },
 	                    body: JSON.stringify({
-	                        name: this.state.eventName
+	                        name: this.state.clubName,
+	                        latitude: this.state.clubLatitude,
+	                        longitude: this.state.clubLongitude,
+	                        imageUrl: this.state.imageUrl
 	                    })
 	                });
 	            }
@@ -22343,17 +22384,80 @@
 	                { className: 'form-group' },
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
-	                    { controlId: 'eventNameInput', validationState: this.getEventNameValidationState() },
+	                    { controlId: 'clubNameInput', validationState: this.getClubNameValidationState() },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.ControlLabel,
 	                        null,
-	                        'Insert Event'
+	                        'Insert Club'
 	                    ),
 	                    _react2.default.createElement(_reactBootstrap.FormControl, {
 	                        type: 'text',
-	                        value: this.state.eventName,
-	                        placeholder: 'Enter event name',
-	                        onChange: this.handleEventNameChange
+	                        value: this.state.clubName,
+	                        placeholder: 'Enter club name',
+	                        onChange: this.handleClubNameChange
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        'Validation is based on string length.'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'latitudeInput', validationState: this.getLatitudeValidationState() },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Insert Latitude'
+	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        type: 'text',
+	                        value: this.state.clubLatitude,
+	                        placeholder: 'Enter latitude',
+	                        onChange: this.handleClubLatitudeChange
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        'Validation is based on string length.'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'longitudeInput', validationState: this.getLongitudeValidationState() },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Insert Longitude'
+	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        type: 'text',
+	                        value: this.state.clubLongitude,
+	                        placeholder: 'Enter longitude',
+	                        onChange: this.handleClubLongitudeChange
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        'Validation is based on string length.'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    { controlId: 'imageUrlInput', validationState: this.getImageUrlValidationState() },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        'Insert Image URL'
+	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        type: 'text',
+	                        value: this.state.imageUrl,
+	                        placeholder: 'Enter image URL',
+	                        onChange: this.handleImageUrlChange
 	                    }),
 	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                    _react2.default.createElement(
@@ -22364,17 +22468,17 @@
 	                ),
 	                _react2.default.createElement(
 	                    _reactBootstrap.Button,
-	                    { bsStyle: 'primary', onClick: this.addEvent },
-	                    'Insert event'
+	                    { bsStyle: 'primary', onClick: this.addClub },
+	                    'Insert club'
 	                )
 	            );
 	        }
 	    }]);
 
-	    return EventInsertForm;
+	    return VenueInsertForm;
 	}(_react.Component);
 
-	exports.default = EventInsertForm;
+	exports.default = VenueInsertForm;
 	;
 
 /***/ },
@@ -42634,233 +42738,6 @@
 
 	var Config = __webpack_require__(445);
 
-	var VenueInsertForm = function (_Component) {
-	    _inherits(VenueInsertForm, _Component);
-
-	    _createClass(VenueInsertForm, [{
-	        key: 'displayName',
-	        get: function get() {
-	            return 'Venue Form';
-	        }
-	    }]);
-
-	    function VenueInsertForm(props) {
-	        _classCallCheck(this, VenueInsertForm);
-
-	        var _this = _possibleConstructorReturn(this, (VenueInsertForm.__proto__ || Object.getPrototypeOf(VenueInsertForm)).call(this, props));
-
-	        _this.state = { clubName: '', clubLatitude: '', clubLongitude: '', imageUrl: '' };
-
-	        _this.handleClubNameChange = _this.handleClubNameChange.bind(_this);
-	        _this.handleClubLatitudeChange = _this.handleClubLatitudeChange.bind(_this);
-	        _this.handleClubLongitudeChange = _this.handleClubLongitudeChange.bind(_this);
-	        _this.handleImageUrlChange = _this.handleImageUrlChange.bind(_this);
-	        _this.addClub = _this.addClub.bind(_this);
-	        return _this;
-	    }
-
-	    _createClass(VenueInsertForm, [{
-	        key: 'getClubNameValidationState',
-	        value: function getClubNameValidationState() {
-	            var length = this.state.clubName.length;
-	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
-	        }
-	    }, {
-	        key: 'getLatitudeValidationState',
-	        value: function getLatitudeValidationState() {
-	            var length = this.state.clubLatitude.length;
-	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
-	        }
-	    }, {
-	        key: 'getLongitudeValidationState',
-	        value: function getLongitudeValidationState() {
-	            var length = this.state.clubLongitude.length;
-	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
-	        }
-	    }, {
-	        key: 'getImageUrlValidationState',
-	        value: function getImageUrlValidationState() {
-	            var length = this.state.imageUrl.length;
-	            if (length > 2) return 'success';else if (length > 0) return 'warning';else if (length == 0) return 'error';
-	        }
-	    }, {
-	        key: 'handleClubNameChange',
-	        value: function handleClubNameChange(e) {
-	            this.setState({ clubName: e.target.value });
-	        }
-	    }, {
-	        key: 'handleClubLatitudeChange',
-	        value: function handleClubLatitudeChange(e) {
-	            this.setState({ clubLatitude: e.target.value });
-	        }
-	    }, {
-	        key: 'handleClubLongitudeChange',
-	        value: function handleClubLongitudeChange(e) {
-	            this.setState({ clubLongitude: e.target.value });
-	        }
-	    }, {
-	        key: 'handleImageUrlChange',
-	        value: function handleImageUrlChange(e) {
-	            this.setState({ imageUrl: e.target.value });
-	        }
-	    }, {
-	        key: 'addClub',
-	        value: function addClub() {
-	            if (this.getClubNameValidationState() === 'success' && this.getLatitudeValidationState() === 'success' && this.getLongitudeValidationState() === 'success' && this.getImageUrlValidationState() === 'success') {
-
-	                fetch(Config.serverUrl + '/api/venues', {
-	                    method: 'POST',
-	                    headers: {
-	                        'Accept': 'application/json',
-	                        'Content-Type': 'application/json',
-	                        'Access-Control-Allow-Origin': '*'
-	                    },
-	                    body: JSON.stringify({
-	                        name: this.state.clubName,
-	                        latitude: this.state.clubLatitude,
-	                        longitude: this.state.clubLongitude,
-	                        imageUrl: this.state.imageUrl
-	                    })
-	                });
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'form',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                    _reactBootstrap.FormGroup,
-	                    { controlId: 'clubNameInput', validationState: this.getClubNameValidationState() },
-	                    _react2.default.createElement(
-	                        _reactBootstrap.ControlLabel,
-	                        null,
-	                        'Insert Club'
-	                    ),
-	                    _react2.default.createElement(_reactBootstrap.FormControl, {
-	                        type: 'text',
-	                        value: this.state.clubName,
-	                        placeholder: 'Enter club name',
-	                        onChange: this.handleClubNameChange
-	                    }),
-	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.HelpBlock,
-	                        null,
-	                        'Validation is based on string length.'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.FormGroup,
-	                    { controlId: 'latitudeInput', validationState: this.getLatitudeValidationState() },
-	                    _react2.default.createElement(
-	                        _reactBootstrap.ControlLabel,
-	                        null,
-	                        'Insert Latitude'
-	                    ),
-	                    _react2.default.createElement(_reactBootstrap.FormControl, {
-	                        type: 'text',
-	                        value: this.state.clubLatitude,
-	                        placeholder: 'Enter latitude',
-	                        onChange: this.handleClubLatitudeChange
-	                    }),
-	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.HelpBlock,
-	                        null,
-	                        'Validation is based on string length.'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.FormGroup,
-	                    { controlId: 'longitudeInput', validationState: this.getLongitudeValidationState() },
-	                    _react2.default.createElement(
-	                        _reactBootstrap.ControlLabel,
-	                        null,
-	                        'Insert Longitude'
-	                    ),
-	                    _react2.default.createElement(_reactBootstrap.FormControl, {
-	                        type: 'text',
-	                        value: this.state.clubLongitude,
-	                        placeholder: 'Enter longitude',
-	                        onChange: this.handleClubLongitudeChange
-	                    }),
-	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.HelpBlock,
-	                        null,
-	                        'Validation is based on string length.'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.FormGroup,
-	                    { controlId: 'imageUrlInput', validationState: this.getImageUrlValidationState() },
-	                    _react2.default.createElement(
-	                        _reactBootstrap.ControlLabel,
-	                        null,
-	                        'Insert Image URL'
-	                    ),
-	                    _react2.default.createElement(_reactBootstrap.FormControl, {
-	                        type: 'text',
-	                        value: this.state.imageUrl,
-	                        placeholder: 'Enter image URL',
-	                        onChange: this.handleImageUrlChange
-	                    }),
-	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.HelpBlock,
-	                        null,
-	                        'Validation is based on string length.'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.Button,
-	                    { bsStyle: 'primary', onClick: this.addClub },
-	                    'Insert club'
-	                )
-	            );
-	        }
-	    }]);
-
-	    return VenueInsertForm;
-	}(_react.Component);
-
-	exports.default = VenueInsertForm;
-	;
-
-/***/ },
-/* 447 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(37);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _reactBootstrap = __webpack_require__(185);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Config = __webpack_require__(445);
-
 	var CategoryInsertForm = function (_Component) {
 	    _inherits(CategoryInsertForm, _Component);
 
@@ -42899,7 +42776,7 @@
 	        value: function addCategory() {
 	            if (this.getCategoryNameValidationState() === 'success') {
 
-	                fetch(Config.serverUrl + '/api/Categorys', {
+	                fetch(Config.serverUrl + '/api/categories', {
 	                    method: 'POST',
 	                    headers: {
 	                        'Accept': 'application/json',
@@ -42917,7 +42794,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'form',
-	                { className: 'form-group' },
+	                { 'class': 'form-group' },
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
 	                    { controlId: 'CategoryNameInput', validationState: this.getCategoryNameValidationState() },
@@ -42955,6 +42832,7 @@
 	;
 
 /***/ },
+/* 447 */,
 /* 448 */
 /***/ function(module, exports, __webpack_require__) {
 

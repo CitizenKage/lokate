@@ -21,7 +21,7 @@ module.exports = {
         'Config': JSON.stringify(process.env.ENV === 'production' ? {
             serverUrl: "http://myserver.com"
         } : {
-                //serverUrl: "http://lokate-api.pipeweb.co.uk"
+                //serverUrl: "http://lokate-api.popeweb.co.uk"
                 serverUrl: "http://localhost:55616"
             })
     }
