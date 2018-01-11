@@ -27,7 +27,7 @@ export default class EventInsertForm extends Component {
         this.setState({ eventName: e.target.value });
     }
 
-    async getCategoriesForSelect() {
+    getCategoriesForSelect() {
         fetch(Config.serverUrl + '/api/categories', {
             method: 'GET',
             headers: {
